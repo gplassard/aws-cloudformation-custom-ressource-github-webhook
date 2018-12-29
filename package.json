@@ -13,10 +13,5 @@
   "devDependencies": {
     "serverless": "^1.35.1"
   },
-  "dependencies": {
-    "node-fetch": "^2.3.0",
-    "request": "^2.88.0",
-    "url": "^0.11.0",
-    "utf8": "^3.0.0"
-  }
+  "dependencies": {}
 }
