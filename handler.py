@@ -17,13 +17,15 @@ logger.setLevel(logging.INFO)
 def get_credentials(event, context):
     try:
         props = event['ResourceProperties']
+
         deleteResponse = codebuild.delete_webhook(projectName=props['CodebuildProjectName'])
         logger.info('delete response %s', deleteResponse)
+
         createResponse = codebuild.create_webhook(projectName=props['CodebuildProjectName'])
         logger.info('create response %s', createResponse)
 
         webhookUrl = createResponse['webhook']['url']
-        payload = json.dumps({'events':['pull_request']})
+        payload = json.dumps(props['Payload'])
         token = props['GithubOAuth']
         req = Request(
             webhookUrl, 
@@ -35,7 +37,6 @@ def get_credentials(event, context):
                 'Authorization': 'token ' + token
             }
         )
-
         response = urlopen(req)
         logger.info('Github response %s', response)
 
@@ -53,8 +54,13 @@ def get_credentials(event, context):
 @handler.delete
 def on_delete(event, context):
     props = event['ResourceProperties']
-    deleteResponse = codebuild.delete_webhook(projectName=props['CodebuildProjectName'])
-    logger.info('delete response %s', deleteResponse)
+
+    try:
+        deleteResponse = codebuild.delete_webhook(projectName=props['CodebuildProjectName'])
+        logger.info('delete response %s', deleteResponse)
+    except codebuild.exceptions.ResourceNotFoundException:
+        pass
+
     return {
         'Status': cfn_resource.SUCCESS
     }

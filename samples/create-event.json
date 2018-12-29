@@ -9,6 +9,7 @@
   "ResourceProperties": {
     "ServiceToken": "arn:aws:lambda:eu-west-1:147597503572:function:cfn-github-webhook-dev-githubWebhook",
     "CodebuildProjectName": "sample20",
-    "GithubOAuth": "secret"
+    "GithubOAuth": "secret",
+    "Payload": {"events":["pull_request"]}
   }
 }

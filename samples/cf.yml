@@ -12,6 +12,9 @@ Resources:
       ServiceToken: arn:aws:lambda:eu-west-1:147597503572:function:cfn-github-webhook-dev-githubWebhook
       CodebuildProjectName: !Ref AWS::StackName
       GithubOAuth: !Ref GithubOAuthSecretParameterA4DAD33A
+      Payload:
+        events: ['pull_request']
+    DependsOn: MyProject39F7B0AE
   MyProjectRole9BBE5233:
     Type: AWS::IAM::Role
     Properties:
