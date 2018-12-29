@@ -8,6 +8,7 @@
   "ResourceType": "Custom::CodebuildGithubWebhook",
   "ResourceProperties": {
     "ServiceToken": "arn:aws:lambda:eu-west-1:147597503572:function:cfn-github-webhook-dev-githubWebhook",
-    "KeyName": "toto"
+    "CodebuildProjectName": "sample20",
+    "GithubOAuth": "secret"
   }
 }
