@@ -1,0 +1,13 @@
+{
+  "name": "aws-cloudformation-custom-ressource-github-webhook",
+  "version": "1.0.0",
+  "repository": "git@github.com:gplassard/aws-cloudformation-custom-ressource-github-webhook.git",
+  "license": "MIT",
+  "scripts": {
+    "serverless": "serverless",
+    "deploy": "serverless deploy --aws-profile perso"
+  },
+  "devDependencies": {
+    "serverless": "^1.35.1"
+  }
+}
