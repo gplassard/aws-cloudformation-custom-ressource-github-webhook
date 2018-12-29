@@ -1,0 +1,8 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Resources:
+  Webhook:
+    Type: Custom::CodebuildGithubWebhook
+    Version: "1.0"
+    Properties:
+      ServiceToken: arn:aws:lambda:eu-west-1:147597503572:function:cfn-github-webhook-dev-githubWebhook
+      KeyName: toto

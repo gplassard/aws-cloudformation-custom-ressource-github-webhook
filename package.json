@@ -5,9 +5,14 @@
   "license": "MIT",
   "scripts": {
     "serverless": "serverless",
-    "deploy": "serverless deploy --aws-profile perso"
+    "deploy": "serverless deploy --aws-profile perso",
+    "invoke": "serverless invoke -f githubWebhook -l  --path samples/create-event.json --aws-profile perso",
+    "sample:deploy": "aws cloudformation deploy --template-file samples/cf.yml --stack-name sample --profile perso"
   },
   "devDependencies": {
     "serverless": "^1.35.1"
+  },
+  "dependencies": {
+    "node-fetch": "^2.3.0"
   }
 }
