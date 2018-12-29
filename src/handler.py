@@ -2,7 +2,7 @@ import boto3
 import base64
 import json
 from botocore.exceptions import ClientError
-import cfn_resource
+from src import cfn_resource
 import logging
 from urllib.request import urlopen, Request, HTTPError, URLError
 
