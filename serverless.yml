@@ -19,7 +19,7 @@ service: cfn-github-webhook # NOTE: update this with your service name
 
 provider:
   name: aws
-  runtime: nodejs8.10
+  runtime: python3.6
   region: eu-west-1
 
 # you can overwrite defaults here
@@ -57,7 +57,7 @@ provider:
 
 functions:
   githubWebhook:
-    handler: src/handler.handle
+    handler: handler.handler
 
 #    The following are a few example events you can configure
 #    NOTE: Please make sure to change your handler code to work with those events

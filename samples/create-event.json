@@ -1,16 +1,13 @@
 {
-    "RequestType": "Create",
-    "ResponseURL": "http://pre-signed-S3-url-for-response",
-    "StackId": "arn:aws:cloudformation:eu-west-1:123456789012:stack/MyStack/guid",
-    "RequestId": "unique id for this create request",
-    "ResourceType": "Custom::CodebuildGithubWebhook",
-    "LogicalResourceId": "MyTestResource",
-    "ResourceProperties": {
-      "StackName": "MyStack",
-      "List": [
-        "1",
-        "2",
-        "3"
-      ]
-    }
+  "RequestType": "Create",
+  "ServiceToken": "arn:aws:lambda:eu-west-1:147597503572:function:cfn-github-webhook-dev-githubWebhook",
+  "ResponseURL": "https://cloudformation-custom-resource-response-euwest1.s3-eu-west-1.amazonaws.com/arn%3Aaws%3Acloudformation%3Aeu-west-1%3A147597503572%3Astack/sample15/07d10e00-0b6e-11e9-aa84-0235cc8838dc%7CWebhook%7Ca1f42c0c-fee7-4ca8-a782-7b7ea7b3bf18?AWSAccessKeyId=AKIAJ7MCS7PVEUOADEEA&Expires=1546097490&Signature=LCP6BN27voCU7l1n6Vi0oJ4ZzBU%3D",
+  "StackId": "arn:aws:cloudformation:eu-west-1:147597503572:stack/sample15/07d10e00-0b6e-11e9-aa84-0235cc8838dc",
+  "RequestId": "a1f42c0c-fee7-4ca8-a782-7b7ea7b3bf18",
+  "LogicalResourceId": "Webhook",
+  "ResourceType": "Custom::CodebuildGithubWebhook",
+  "ResourceProperties": {
+    "ServiceToken": "arn:aws:lambda:eu-west-1:147597503572:function:cfn-github-webhook-dev-githubWebhook",
+    "KeyName": "toto"
   }
+}

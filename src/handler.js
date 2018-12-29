@@ -1,6 +1,9 @@
 'use strict';
 
 const fetch = require('node-fetch');
+const utf8 = require('utf8');
+const url = require('url');
+const request = require('request');
 
 const RESOURCE_TYPE = 'Custom::CodebuildGithubWebhook';
 
@@ -13,22 +16,48 @@ module.exports.handle = async (event, context) => {
     };
   }
 
-  const response = await fetch(decodeURIComponent(event.ResponseURL), {
+  console.log(event.ResponseURL);
+  console.log(decodeURIComponent(event.ResponseURL));
+  console.log(utf8.encode(decodeURIComponent(event.ResponseURL)));
+  console.log(url.parse(decodeURIComponent(event.ResponseURL)));
+
+  const body = JSON.stringify({
+    "Status": "SUCCESS",
+    "PhysicalResourceId": event.PhysicalResourceId,
+    "StackId": event.StackId,
+    "RequestId": event.RequestId,
+    "LogicalResourceId": event.LogicalResourceId,
+    "PhysicalResourceId": event.LogicalResourceId
+  });
+
+  console.log(body);
+
+  const response = await fetch(event.ResponseURL , {
     method: 'PUT',
     headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({
-      "Status": "SUCCESS",
-      "PhysicalResourceId": event.PhysicalResourceId,
-      "StackId": event.StackId,
-      "RequestId": event.RequestId,
-      "LogicalResourceId": event.LogicalResourceId,
-      "Data": {
-        "OutputName1": "Value1",
-        "OutputName2": "Value2",
-      }
-    })
+    body: body
   }).then(res => res.text());
 
+  /*const response = await new Promise((success) => {
+    request(event.ResponseURL, {method: 'PUT', body: body, headers: { 'Content-Type': 'application/json' } })
+      .on('response', function(response) {
+        console.log(response.statusCode) // 200
+        console.log(response.headers) // 'image/png'
+        console.log(response.body)
+        //success(response.statusCode)
+      })
+      .on('body', (error, response, body) => {
+        console.log(error);
+        console.log(response);
+        console.log(body);
+        success(body)
+      })
+      .on('error', (error) => {
+        console.log(error);
+        success(error)
+      })
+  })*/
+  
   console.log(response);
 
   return {
